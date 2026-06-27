@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="card form-card">
+    <h2>Login to InkSpire</h2>
+    
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        
+        <div class="form-group-wrapper">
+            <p>
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="username" 
+                    class="form-control" 
+                    placeholder="Enter your username" 
+                    required>
+            </p>
+            
+            <p>
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="Enter your password" 
+                    required>
+            </p>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+    
+    <hr class="divider">
+    
+    <p class="auth-helper-text" style="text-align: center; color: var(--text-muted); font-size: 14px;">
+        Don't have an account? <a href="{% url 'register' %}" style="color: var(--primary-color); font-weight: 600;">Register here</a>
+    </p>
+</div>
+{% endblock %}

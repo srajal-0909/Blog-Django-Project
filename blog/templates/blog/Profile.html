@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+{{ profile_user.username }}'s Profile
+{% endblock %}
+
+{% block content %}
+<div class="card profile-card">
+    {% comment %} <div class="profile-avatar">
+        {{ profile_user.username|slice:":1" }}
+    </div> {% endcomment %}
+    
+    <div class="profile-details">
+        <h2>{{ profile_user.username }}</h2>
+        <div class="profile-meta-info">
+            <span>Email: <strong>{{ profile_user.email|default:"Not shared" }}</strong></span>
+            <span>Total Posts: <strong>{{ post_count }}</strong></span>
+        </div>
+    </div>
+</div>
+
+<h2 class="profile-posts-title">Posts by {{ profile_user.username }}</h2>
+
+<div class="posts-feed">
+    {% for post in posts %}
+        <article class="card post-card">
+            <h3 class="post-title">
+               <a href="{% url 'post_detail' post.id %}">
+                  {{ post.title }}
+               </a>
+            </h3>
+            
+            <p class="post-snippet">{{ post.content|truncatewords:30 }}</p>
+            
+            <div class="post-meta">
+                <span class="date">on {{ post.created_at|date:"F j, Y" }}</span>
+            </div>
+            
+            <div class="post-actions-preview">
+                <a href="{% url 'post_detail' post.id %}" class="read-more">Read Full Post &rarr;</a>
+            </div>
+        </article>
+    {% empty %}
+        <div class="card empty-card">
+            <p>No posts written by this user yet.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
