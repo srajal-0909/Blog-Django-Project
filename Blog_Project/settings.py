@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-*-*^ozy=77wslfml60=c+qtd#gb^wq+bo=e@1op*!mh7@uyq9$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ 
+    "blog-django-project-1.onrender.com",
+    "localhost",
+    "127.0.0.1",]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Application definition
